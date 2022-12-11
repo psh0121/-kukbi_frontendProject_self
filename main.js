@@ -28,7 +28,29 @@
             multiplyValue: 5,
             elemInfo: {
                 section: document.querySelector('.section1'),
-                img: document.querySelector('.section1-contents-img')
+                img: document.querySelector('.section1-contents-img'),
+                message: [
+                    document.querySelector('.section1-contents-message0'),
+                    document.querySelector('.section1-contents-message1'),
+                    document.querySelector('.section1-contents-message2'),
+                    document.querySelector('.section1-contents-message3')
+                ]
+            },
+            opacitySettingsValues: {
+                img: [0, 1, {start: 0.00, end: 0.09}],
+                message: [
+                    [0, 1, {start: 0.10, end: 0.34}],
+                    [0, 1, {start: 0.35, end: 0.59}]
+                ],
+                fade_out: [1, 0, {start: 0.70, end: 0.84}]
+            },
+            tanslateYSettingsValues: {
+                img: [20, 0, {start: 0.00, end: 0.09}],
+                message: [
+                    [20, 0, {start: 0.10, end: 0.34}],
+                    [20, 0, {start: 0.35, end: 0.59}]
+                ],
+                fade_out: [0, 20, {start: 0.70, end: 0.84}]
             }
         },
 
@@ -104,6 +126,40 @@
         document.body.setAttribute('id', `current-section${currentSection}`);
     }
 
+    // clacValue : 애니메이션에 적용하기 위한 값을 CSS화 한다.
+    //  - parameter : 각영역의 설정값 ([0, 1, { start: 0.05, end: 0.14 }])
+    //  - return : CSS화한 값
+    const calcValue = function(value)
+    {
+        let rate;
+        let result;
+        let height = sectionSet[currentSection].height;
+
+        // 비율에 기반한 CSS화한 값
+        let startValue = height * value[2].start;
+        let endValue = height * value[2].end;
+        let heightValue = endValue - startValue;
+
+        // 설정범위에서 벗어났을 경우 값의 가장 끝 값이 value[0]과 vlaue[1]로
+        // 임의로 값을 지정해준다.
+        if(sectionYOffset < startValue)
+		{
+			result = value[0];
+		}
+		else if(sectionYOffset > endValue)
+		{
+			result = value[1];
+		}
+		else
+		{
+			rate = (sectionYOffset - startValue) / heightValue;
+	
+			result = (rate * (value[1] - value[0])) + value[0];
+		}
+		return result;
+    }
+
+
     // section0Animation : section0에서 발생되는 애니메이션
     //  - parameter : x
     //  - return : x
@@ -145,6 +201,69 @@
         sectionSet[1].elemInfo.img.style.height = `${heightSize}px`;
     }
 
+    // section1Animation : section1에서 발생되는 애니메이션
+    //  - parameter : x
+    //  - return : x
+    const section1Animation = function()
+    {
+        const scrollRate = sectionYOffset / sectionSet[1].height;
+        let opValue;
+        let yValue;
+
+        const elemInfo = sectionSet[1].elemInfo;
+
+        const opInfo = sectionSet[1].opacitySettingsValues;
+        const yInfo = sectionSet[1].tanslateYSettingsValues;
+
+        if(scrollRate < 0.10)
+        {
+            opValue = calcValue(opInfo.img);
+            yValue = calcValue(yInfo.img);
+
+            elemInfo.img.style.opacity = opValue;
+            elemInfo.img.style.transform = `translateY(${yValue}%) translateX(-50%)`;
+        }
+        else if((scrollRate >= 0.10) && (scrollRate < 0.35))
+        {
+            opValue = calcValue(opInfo.message[0]);
+            yValue = calcValue(yInfo.message[0]);
+
+            elemInfo.message[0].style.opacity = opValue;
+            elemInfo.message[0].style.transform = `translateY(${yValue}%)`;
+
+            elemInfo.message[2].style.opacity = opValue;
+            elemInfo.message[2].style.transform = `translateY(${yValue}%)`;
+        }
+        else if((scrollRate >= 0.35) && (scrollRate < 0.60))
+        {
+            opValue = calcValue(opInfo.message[1]);
+            yValue = calcValue(yInfo.message[1]);
+
+            elemInfo.message[1].style.opacity = opValue;
+            elemInfo.message[1].style.transform = `translateY(${yValue}%)`;
+
+            elemInfo.message[3].style.opacity = opValue;
+            elemInfo.message[3].style.transform = `translateY(${yValue}%)`;
+        }
+        else if((scrollRate >= 0.70) && (scrollRate < 0.84))
+        {
+            opValue = calcValue(opInfo.fade_out);
+            yValue = calcValue(yInfo.fade_out);
+
+            elemInfo.img.style.opacity = opValue;
+            elemInfo.img.style.transform = `translateY(${yValue}%) translateX(-50%)`;
+        
+            elemInfo.message[0].style.opacity = opValue;
+            elemInfo.message[0].style.transform = `translateY(${yValue}%)`;
+            elemInfo.message[1].style.opacity = opValue;
+            elemInfo.message[1].style.transform = `translateY(${yValue}%)`;
+            elemInfo.message[2].style.opacity = opValue;
+            elemInfo.message[2].style.transform = `translateY(${yValue}%)`;
+            elemInfo.message[3].style.opacity = opValue;
+            elemInfo.message[3].style.transform = `translateY(${yValue}%)`;
+        }
+    }
+
     // loadAnimation : load된 이후에 발생될 애니메이션
     //  - parameter : x
     //  - return : x
@@ -159,7 +278,16 @@
     //  - return : x
     const playAnimation = function()
     {
-        
+        switch(currentSection)
+        {
+            case 0:
+                break;
+            case 1:
+                section1Animation();
+                break;
+            case 2:
+                break;
+        }
     }
 
 

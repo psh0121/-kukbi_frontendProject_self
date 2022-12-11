@@ -143,6 +143,7 @@ nav a {
     /* fixed - section1 스크롤시 고정상태 유지 */
     position: fixed;
     bottom: 5%;
+    margin: 0 auto;
     display: none;
     /* 이미지 가운데 정렬 - 시작점(50%) + x위치(-50%)  */
     left: 50%;
@@ -152,6 +153,7 @@ nav a {
 .section1-contents-messages {
     padding: 1.2em;
     display: none;
+    opacity: 0;
 }
 
 .section1-contents-messages h1 {
@@ -198,15 +200,6 @@ nav a {
 .section2 {
     width: 100%;
     background-color: white;
-}
-
-.section1-contents {
-    
-    /* display: flex;
-    justify-content: space-around;
-    max-width: 1200px;
-    height: 100%;
-    margin: 0 auto; */
 }
 
 .section1-contents, .section2-contents {
