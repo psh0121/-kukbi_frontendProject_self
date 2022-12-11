@@ -51,6 +51,10 @@ nav a {
     text-shadow: 1px 1px 2px rgb(47, 47, 47);
 }
 
+footer {
+    background-color: rgb(10, 37, 73);
+}
+
 .home-icon {
     width: 30px;
     height: 30px;
@@ -217,6 +221,7 @@ nav a {
     margin: 0 3em;
     padding: 1.5em;
     background-color: lightgray;
+    opacity: 0;
 }
 
 .section2-contents img {

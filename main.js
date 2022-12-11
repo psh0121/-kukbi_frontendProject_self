@@ -57,9 +57,20 @@
         // section2
         {
             height: 0,
-            multiplyValue: 0.8,
+            multiplyValue: 1.2,
             elemInfo: {
-                section: document.querySelector('.section2')
+                section: document.querySelector('.section2'),
+                content: [
+                    document.querySelector('.section2-content0'),
+                    document.querySelector('.section2-content1'),
+                    document.querySelector('.section2-content2')
+                ]
+            },
+            opacitySettingsValues: {
+                content: [0, 1, {start: 0, end: 0.09}]
+            },
+            tanslateYSettingsValues: {
+                content: [20, 0, {start: 0, end: 0.09}]
             }
         },
     ];
@@ -278,6 +289,43 @@
         }
     }
 
+    // section1Animation : section2에서 발생되는 애니메이션
+    //  - parameter : x
+    //  - return : x
+    const section2Animation = function()
+    {
+        const scrollRate = sectionYOffset / sectionSet[2].height;
+        let opValue;
+        let yValue;
+
+        const elemInfo = sectionSet[2].elemInfo;
+
+        const opInfo = sectionSet[2].opacitySettingsValues;
+        const yInfo = sectionSet[2].tanslateYSettingsValues;
+
+        if((scrollRate >= 0) && (scrollRate < 0.10))
+        {
+            opValue = calcValue(opInfo.content);
+            yValue = calcValue(yInfo.content);
+
+            elemInfo.content[0].style.opacity = opValue;
+            elemInfo.content[0].style.transform = `translateY(${yValue}%)`;
+            elemInfo.content[1].style.opacity = opValue;
+            elemInfo.content[1].style.transform = `translateY(${yValue}%)`;
+            elemInfo.content[2].style.opacity = opValue;
+            elemInfo.content[2].style.transform = `translateY(${yValue}%)`;
+        }
+        else if(scrollRate >= 0.10)
+        {
+            elemInfo.content[0].style.opacity = 1;
+            elemInfo.content[0].style.transform = `translateY(0%)`;
+            elemInfo.content[1].style.opacity = 1;
+            elemInfo.content[1].style.transform = `translateY(0%)`;
+            elemInfo.content[2].style.opacity = 1;
+            elemInfo.content[2].style.transform = `translateY(0%)`;
+        }
+    }
+
     // loadAnimation : load된 이후에 발생될 애니메이션
     //  - parameter : x
     //  - return : x
@@ -300,6 +348,7 @@
                 section1Animation();
                 break;
             case 2:
+                section2Animation();
                 break;
         }
     }
