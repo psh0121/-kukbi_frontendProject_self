@@ -1,0 +1,70 @@
+@charset 'utf-8';
+
+/* 웹폰트 : 나눔스퀘어 네오 */
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    font-size: 14px;
+    font-family: 'NanumSquareNeo-Variable';
+}
+
+body {
+    height: 4000px;
+    overflow-x: hidden;     /* 수평 스크롤 제거 */
+    letter-spacing: -0.05rem;
+}
+
+nav {
+    /* fixed - 스크롤시에도 상단에 고정되도록 설정 */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 70px;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+}
+
+.home-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.global-nav-links {
+    /* flex - nav안에 있는 link 정렬 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    height: 100%;
+    padding: 0 5px 0 5px;
+    margin: 0 auto;
+    border: 1px solid salmon;
+}
+
+.global-nav-home-label {
+    /* flex - 라벨로 묶여있는 이미지와 링크의 정렬 관리 */
+    display: flex;
+    align-items: center;
+}
+
+.global-nav-link {
+    font-size: 1.05rem;
+    font-weight: bold;
+}
+
+.global-nav-home-label a {
+    font-weight: bold;
+    font-size: 2.3rem;
+
+    padding-left: 5px;
+}
+
