@@ -262,6 +262,20 @@
             elemInfo.message[3].style.opacity = opValue;
             elemInfo.message[3].style.transform = `translateY(${yValue}%)`;
         }
+        else if(scrollRate >= 0.85)
+        {
+            elemInfo.img.style.opacity = 0;
+            elemInfo.img.style.transform = `translateY(0%) translateX(-50%)`;
+        
+            elemInfo.message[0].style.opacity = 0;
+            elemInfo.message[0].style.transform = `translateY(0%)`;
+            elemInfo.message[1].style.opacity = 0;
+            elemInfo.message[1].style.transform = `translateY(0%)`;
+            elemInfo.message[2].style.opacity = 0;
+            elemInfo.message[2].style.transform = `translateY(0%)`;
+            elemInfo.message[3].style.opacity = 0;
+            elemInfo.message[3].style.transform = `translateY(0%)`;
+        }
     }
 
     // loadAnimation : load된 이후에 발생될 애니메이션
