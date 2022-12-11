@@ -57,7 +57,7 @@
         // section2
         {
             height: 0,
-            multiplyValue: 4,
+            multiplyValue: 0.8,
             elemInfo: {
                 section: document.querySelector('.section2')
             }
@@ -215,7 +215,7 @@
         const opInfo = sectionSet[1].opacitySettingsValues;
         const yInfo = sectionSet[1].tanslateYSettingsValues;
 
-        if(scrollRate < 0.10)
+        if((scrollRate >= 0) && (scrollRate < 0.10))
         {
             opValue = calcValue(opInfo.img);
             yValue = calcValue(yInfo.img);
