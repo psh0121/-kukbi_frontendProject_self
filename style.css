@@ -8,6 +8,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'GangwonEduPowerExtraBoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEduPowerExtraBoldA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html {
     font-size: 14px;
     font-family: 'NanumSquareNeo-Variable';
@@ -79,8 +86,6 @@ nav a {
     padding-left: 5px;
 }
 
-
-
 .section0 {
     width: 100%;
     padding-top: 70px;
@@ -122,16 +127,86 @@ nav a {
 
 .section1-title, .section2-title {
     max-width: 1200px;
-    padding: 5px;
+    padding: 30px 5px 5px 10px;
     margin: 0 auto;
-    border-bottom: 1px solid lightgray;
+    font-family: 'GangwonEduPowerExtraBoldA';
+    color: white;
+    font-size: 3rem;
+    text-shadow: 1px 1px 2px rgb(47, 47, 47);
 }
+
+.section1 {
+    background: linear-gradient(rgb(235, 97, 82) 0% 40%, white 40% 100%);
+}
+
+.section1-contents-img {
+    /* fixed - section1 스크롤시 고정상태 유지 */
+    position: fixed;
+    bottom: 5%;
+    display: none;
+    /* 이미지 가운데 정렬 - 시작점(50%) + x위치(-50%)  */
+    left: 50%;
+    transform: translateX( -50% );
+}
+
+.section1-contents-messages {
+    padding: 1.2em;
+    display: none;
+}
+
+.section1-contents-messages h1 {
+    font-size: 2rem;
+    margin-bottom: 0.3em;
+}
+
+.section1-contents-messages p {
+    font-size: 1.3rem;
+    line-height: 1.2em;
+}
+
+.section1-contents-message0 {
+    position: fixed;
+    left: 5%;
+    top: 30%;
+}
+
+.section1-contents-message1 {
+    position: fixed;
+    right: 5%;
+    top: 30%;
+}
+
+.section1-contents-message2 {
+    position: fixed;
+    left: 5%;
+    top: 60%;
+}
+
+.section1-contents-message3 {
+    position: fixed;
+    right: 5%;
+    top: 60%;
+}
+
+#current-section1 .section1-contents-img, #current-section1 .section1-contents-messages {
+    display: block;
+}
+
 
 /* 테스트코딩 */
 
-.section1, .section2 {
+.section2 {
     width: 100%;
     background-color: white;
+}
+
+.section1-contents {
+    
+    /* display: flex;
+    justify-content: space-around;
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto; */
 }
 
 .section1-contents, .section2-contents {

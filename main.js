@@ -25,9 +25,10 @@
         // section1
         {
             height: 0,
-            multiplyValue: 3,
+            multiplyValue: 5,
             elemInfo: {
-                section: document.querySelector('.section1')
+                section: document.querySelector('.section1'),
+                img: document.querySelector('.section1-contents-img')
             }
         },
 
@@ -95,6 +96,14 @@
         return yOffset;
     }
 
+    // setBodyID : 현재 섹션에 따라 바디에 ID 설정
+    //  - parameter : 현재 섹션
+    //  - return : x
+    const setBodyID = function(currentSection)
+    {
+        document.body.setAttribute('id', `current-section${currentSection}`);
+    }
+
     // section0Animation : section0에서 발생되는 애니메이션
     //  - parameter : x
     //  - return : x
@@ -108,12 +117,10 @@
             sectionSet[0].elemInfo.message[0].style.opacity =  opValue;
             sectionSet[0].elemInfo.message[1].style.opacity =  opValue;
             sectionSet[0].elemInfo.img.style.opacity =  opValue;
-            opValue += 0.05;
             
             sectionSet[0].elemInfo.message[0].style.transform = `translateY(${yValue}%)`;
             sectionSet[0].elemInfo.message[1].style.transform = `translateY(${yValue}%)`;
             sectionSet[0].elemInfo.img.style.transform = `translateY(${yValue}%)`;
-            yValue --;
 
             if((opValue >= sectionSet[0].opacitySettingsValues[1]) && 
                (yValue <= sectionSet[0].tanslateYSettingsValues[1]))
@@ -122,7 +129,20 @@
                 opValue = 0;
                 yValue = 20;
             }
+
+            opValue += 0.05;
+            yValue --;
+
         }, 40);
+    }
+
+    // section1ImgSettings : section1에서 화면창에서 나타날 이미지 크기 설정하기
+    //  - parameter : x
+    //  - return : x
+    const section1ImgSettings = function()
+    {
+        let heightSize = window.innerHeight * 0.8;
+        sectionSet[1].elemInfo.img.style.height = `${heightSize}px`;
     }
 
     // loadAnimation : load된 이후에 발생될 애니메이션
@@ -131,6 +151,7 @@
     const loadAniamtion = function()
     {
         section0Animation();
+        section1ImgSettings();
     }
 
     // playAnimation : section에 맞는 애니메이션 실행
@@ -154,6 +175,8 @@
 
         setLayout();
 
+        setBodyID(currentSection);
+
         loadAniamtion();
     });
 
@@ -162,6 +185,8 @@
         currentScrollY = window.scrollY;
         currentSection = getCurrentSection();
         sectionYOffset = getSectionYOffset();
+
+        setBodyID(currentSection);
 
         playAnimation();
     });
