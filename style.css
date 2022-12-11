@@ -28,13 +28,19 @@ nav {
     height: 70px;
 }
 
-nav a {
-    text-decoration: none;
-    color: black;
+video {
+    /* absolute - 가장뒤에 비디오 위치 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -10;
+    width: 1920;
+    height: 1080;
 }
 
-section {
-    z-index: -1;
+nav a {
+    text-decoration: none;
+    color: rgb(235, 235, 235);
 }
 
 .home-icon {
@@ -51,7 +57,6 @@ section {
     height: 100%;
     padding: 0 5px 0 5px;
     margin: 0 auto;
-    border: 1px solid salmon;
 }
 
 .global-nav-home-label {
@@ -66,46 +71,76 @@ section {
 }
 
 .global-nav-home-label a {
+    color: rgb(34, 34, 34);
     font-weight: bold;
     font-size: 2.3rem;
 
     padding-left: 5px;
 }
 
-section {
-    border: 1px solid salmon;
-}
+
 
 .section0 {
     width: 100%;
     padding-top: 70px;
 }
 
-.section0-title, .section1-title, .section2-title {
-    max-width: 1200px;
-    padding: 5px;
-    margin: 0 auto;
-    border-bottom: 1px solid salmon;
-}
-
 .section0-contents {
     /* flex - section 내부 레이아웃 설정 */
     display: flex;
+    align-items: center;
+    justify-content: space-around;
     max-width: 1200px;
     height: 100%;
     margin: 0 auto;
+}
+
+.section0-contents img {
+    width: 400px;
+    height: 400px;
+    opacity: 0;
+}
+
+.section0-contents-message0 {
+    color: rgb(235, 235, 235);
+    font-weight: bold;
+    font-size: 2.5rem;
+    line-height: 1.5em;
+    margin-top: -1em;
+    text-shadow: 1px 1px 2px rgb(47, 47, 47);
+    opacity: 0;
+}
+
+.section0-contents-message1 {
+    color: rgb(235, 97, 82);
+    font-weight: bold;
+    font-size: 4rem;
+    text-shadow: 1px 1px 2px rgb(47, 47, 47);
+    opacity: 0;
+}
+
+.section1-title, .section2-title {
+    max-width: 1200px;
+    padding: 5px;
+    margin: 0 auto;
+    border-bottom: 1px solid lightgray;
 }
 
 /* 테스트코딩 */
 
 .section1, .section2 {
     width: 100%;
+    background-color: white;
 }
 
 .section1-contents, .section2-contents {
     max-width: 1200px;
     height: 100%;
     margin: 0 auto;
+}
+
+section {
+    border: 1px solid salmon;
 }
 
 /* .section0 div {
