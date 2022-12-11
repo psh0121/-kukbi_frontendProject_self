@@ -67,12 +67,36 @@
                 ]
             },
             opacitySettingsValues: {
-                content: [0, 1, {start: 0, end: 0.09}]
+                content: [0, 1, {start: 0, end: 0.19}]
             },
             tanslateYSettingsValues: {
-                content: [20, 0, {start: 0, end: 0.09}]
+                content: [20, 0, {start: 0, end: 0.19}]
             }
         },
+
+        // section3
+        {
+            height: 0,
+            multiplyValue: 4,
+            elemInfo: {
+                section: document.querySelector('.section3'),
+                message: [
+                    document.querySelector('.section3-contents-message0')
+                ],
+                canvas: document.querySelector('.section3-canvas')
+            },
+            opacitySettingsValues: {
+                content: [0, 1, {start: 0, end: 0.24}]
+            },
+            tanslateYSettingsValues: {
+                content: [40, 0, {start: 0, end: 0.24}]
+            },
+            imagesArr: [],
+            imageSettingsValues: {
+                imageRange: [0, 251, {start: 0, end: 1}],
+                image_in: [0, 1, {start: 0.05, end: 0.19}]
+            }
+        }
     ];
 
     //////////////////////////////////////////////////////
@@ -289,7 +313,7 @@
         }
     }
 
-    // section1Animation : section2에서 발생되는 애니메이션
+    // section2Animation : section2에서 발생되는 애니메이션
     //  - parameter : x
     //  - return : x
     const section2Animation = function()
@@ -303,7 +327,7 @@
         const opInfo = sectionSet[2].opacitySettingsValues;
         const yInfo = sectionSet[2].tanslateYSettingsValues;
 
-        if((scrollRate >= 0) && (scrollRate < 0.10))
+        if((scrollRate >= 0) && (scrollRate < 0.20))
         {
             opValue = calcValue(opInfo.content);
             yValue = calcValue(yInfo.content);
@@ -315,7 +339,7 @@
             elemInfo.content[2].style.opacity = opValue;
             elemInfo.content[2].style.transform = `translateY(${yValue}%)`;
         }
-        else if(scrollRate >= 0.10)
+        else if(scrollRate >= 0.20)
         {
             elemInfo.content[0].style.opacity = 1;
             elemInfo.content[0].style.transform = `translateY(0%)`;
@@ -324,6 +348,55 @@
             elemInfo.content[2].style.opacity = 1;
             elemInfo.content[2].style.transform = `translateY(0%)`;
         }
+    }
+
+    // section3Animation : section3에서 발생되는 애니메이션
+    //  - parameter : x
+    //  - return : x
+    const section3Animation = function()
+    {
+        let imageIndex;
+
+        const ctx = sectionSet[3].elemInfo.canvas.getContext('2d');
+        const images = sectionSet[3].imagesArr;
+        const imageRange = sectionSet[3].imageSettingsValues.imageRange;
+
+        imageIndex = Math.floor(calcValue(imageRange));
+        ctx.drawImage(images[imageIndex], 0, 0);
+
+        const scrollRate = sectionYOffset / sectionSet[3].height;
+        let value;
+
+        const elemInfo = sectionSet[3].elemInfo;
+        const info = sectionSet[3].imageSettingsValues.image_in;
+
+        // 이미지 애니메이션
+        if((scrollRate >= 0.05) && (scrollRate < 0.20))
+        {
+            value = calcValue(info);
+
+            elemInfo.canvas.style.opacity = value;
+        }
+        else if(scrollRate >= 0.20)
+        {
+            elemInfo.canvas.style.opInfo = 1;
+        }
+
+        // 메시지 애니메이션
+        if((scrollRate >= 0) && (scrollRate < 0.25))
+        {
+            value = calcValue(sectionSet[3].opacitySettingsValues.content);
+            elemInfo.message[0].style.opacity = value;
+
+            value = calcValue(sectionSet[3].tanslateYSettingsValues.content);
+            elemInfo.message[0].style.transform = `translateY(${value}%)`;
+        }
+        else if(scrollRate >= 0.25)
+        {
+            elemInfo.message[0].style.opacity = 1;
+            elemInfo.message[0].transform = `translateY(0%)`;
+        }
+
     }
 
     // loadAnimation : load된 이후에 발생될 애니메이션
@@ -350,7 +423,34 @@
             case 2:
                 section2Animation();
                 break;
+            case 3:
+                section3Animation();
+                break;
         }
+    }
+
+    // setCnavasImage : 이미지를 로딩하고 캔버스에 이미지를 셋팅한다.
+    //  - parameter : x
+    //  - return : x
+    const setCnavasImage = function()
+    {
+        const imageCount = 252;
+        const imagesArr = sectionSet[3].imagesArr;
+        let imageElem;
+
+        for(let i = 0; i < imageCount; i++)
+        {
+            imageElem = new Image();
+            imageElem.src = `./image/airplane/airplane_${i}.png`;
+
+            imagesArr.push(imageElem);
+        }
+
+        const ctx = sectionSet[3].elemInfo.canvas.getContext('2d');
+
+        imageElem.addEventListener("load", () => {
+            ctx.drawImage(imagesArr[0], 0, 0);
+        })
     }
 
     // fixTitle : 스크롤 내릴때 title 상단에 fixed로 변경
@@ -385,6 +485,8 @@
         setLayout();
 
         setBodyID(currentSection);
+
+        setCnavasImage();
 
         loadAniamtion();
     });

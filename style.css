@@ -141,7 +141,6 @@ footer p {
 }
 
 .section1-title {
-    max-width: 1200px;
     padding: 30px 5px 5px 10px;
     margin: 0 auto;
     font-family: 'GangwonEduPowerExtraBoldA';
@@ -212,7 +211,6 @@ footer p {
 }
 
 .section2-title {
-    max-width: 1200px;
     padding: 30px 5px 5px 10px;
     margin: 0 auto;
     font-family: 'GangwonEduPowerExtraBoldA';
@@ -251,6 +249,32 @@ footer p {
     white-space: normal;
 }
 
+.section3-canvas
+{
+    /* fixed - 스크롤시 마치 고정되어있는 효과 적용 */
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: none;
+    opacity: 0;
+    z-index: -5;
+}
+
+.section3-contents-message0 {
+    /* fixed - 스크롤이벤트 발생시 애니메이션효과 추과할 것 */
+    position: fixed;
+    top: 5.5em;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 5.5rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 2px rgb(47, 47, 47);
+    display: none;
+    opacity: 0;
+}
+
 .footer-icon {
     width: 40px;
     height: 40px;
@@ -267,5 +291,9 @@ footer p {
 }
 
 #current-section1 .section1-contents-img, #current-section1 .section1-contents-messages {
+    display: block;
+}
+
+#current-section3 .section3-contents-message0, #current-section3 .section3-canvas {
     display: block;
 }
