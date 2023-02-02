@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 스타일 -->
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./sub-style.css">
+    
+</head>
+<body>
+    <!-- nav -->
+    <nav class="global-nav">
+        <div class="global-nav-links">
+            
+            <label class="global-nav-home-label">
+                <img class="home-icon" src="./image/icon.png">
+                <a href="#">Let's travel</a>
+            </label>
+            
+            <a class="global-nav-link" href="index.html">Home</a>
+            <a class="global-nav-link" href="about.html">About</a>
+            <a class="global-nav-link" href="download.html">Download</a>
+            <a class="global-nav-link" href="contact.html">Contact</a>
+            
+        </div>
+    </nav>
+
+    <!-- section0 -->
+    <section class="section0" id="wrap">
+
+        <!-- 컨텐츠 -->
+        <div class="contact contact-write">
+            <p>게시글 등록</p>
+            <table>
+                <tr>
+                    <th style="width: 20%;">제목</th>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <th>작성자</th>
+                    <td><input type="text"></td>
+                </tr>
+                <tr>
+                    <th>내용</th>
+                    <td><textarea placeholder="내용을 입력해 주세요"></textarea></td>
+                </tr>
+            </table>
+
+            <table class="contact-btn-tbl">
+                <tr>
+                    <td style="text-align: right;"><button id="register_btn">등록</button></td>
+                </tr>
+            </table>
+            
+        </div>
+        
+    </section>
+
+    <!-- footer -->
+    <footer>
+        <div>
+            <img class="footer-icon" src="./image/icon.png">
+            <h3>Let's travel</h3>
+            <p>This homepage is not a real homepage.</p>
+            <p>It is a homepage made for learning purposes.</p>
+        </div>
+    </footer>
+
+    <!-- 외부파일 JS -->
+    <script src="./contact.js"></script>
+</body>
+</html>
