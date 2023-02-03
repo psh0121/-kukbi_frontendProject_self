@@ -122,12 +122,29 @@ footer p {
     background: linear-gradient(to right, rgb(235, 97, 82) 0% 5%, rgb(248,248, 248) 5% 95%, rgb(235, 97, 82) 95% 100%);
 }
 
-.contact p {
+.contact p, .about p:nth-child(1) {
     width: 60%;
     margin: 1% auto 1% auto;
+    font-size: 2.3em;
+    font-weight: bold;
+    padding-top: 8%;
+}
+
+.about p {
+    width: 60%;
+    margin: 1% auto 1% auto;
+    font-size: 1.3em;
+    line-height: 2rem;
+}
+
+.about .about-title {
+    padding-top: 3%;
     font-size: 1.7em;
     font-weight: bold;
-    padding-top: 2%;
+}
+
+.about .about-sub-title {
+    font-size: 1.4em;
 }
 
 .contact-btn-tbl {
@@ -147,7 +164,6 @@ footer p {
     width: 90%;
     height: 1.3rem;
 }
-
 
 .footer-icon {
     width: 40px;
